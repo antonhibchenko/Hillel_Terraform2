@@ -16,6 +16,21 @@ resource "aws_instance" "UbuntuServer" {
 
   }
 
+resource "aws_ebs_volume" "root_volume" {
+  availability_zone = var.availability_zone
+  size              = 10
+
+  tags = {
+    Name = "LinuxRootVolume"
+  }
+}
+
+resource "aws_volume_attachment" "ebs_att" {
+  device_name = "/dev/sdh"
+  volume_id   = aws_ebs_volume.root_volume.id
+  instance_id = aws_instance.UbuntuServer[count.index].id
+}
+
 resource "aws_network_interface" "UbuntuServerNetworkInterface" {
   subnet_id = var.subnet_id
 }

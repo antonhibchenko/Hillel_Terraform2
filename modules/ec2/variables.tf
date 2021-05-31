@@ -14,6 +14,11 @@ variable "ami_id" {
   description = "UbuntuServer"
 }
 
+variable "availability_zone" {
+  default = "eu-central-1b"
+  description = "UbuntuServer"
+}
+
 variable "eip_attach" {
   type = bool
   default = true
