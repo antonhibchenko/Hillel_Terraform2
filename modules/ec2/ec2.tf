@@ -42,6 +42,15 @@ resource "aws_security_group" "StagingUbuntuServer" {
     security_group_id = aws_security_group.StagingUbuntuServer.id
   }
 
+  resource "aws_security_group_rule" "Tomcat" {
+  description       = "Allow SSH from the world, not secure"
+  type              = "ingress"
+  from_port         = 8080
+  to_port           = 8080
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.StagingUbuntuServer.id
+}
 
   resource "aws_eip" "UbuntuServer" {
       count    = (var.eip_attach ? 1 : 0)
