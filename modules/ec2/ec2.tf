@@ -1,4 +1,4 @@
-locals {
+  locals {
   common_tags = {
     Purpose = "Education"
     Project = "Lesson 2"
@@ -6,7 +6,7 @@ locals {
   }
 }
 
-resource "aws_instance" "UbuntuServer" {
+  resource "aws_instance" "UbuntuServer" {
     count = var.instance_count
     ami = var.ami_id
     instance_type = var.instance_type
@@ -16,7 +16,7 @@ resource "aws_instance" "UbuntuServer" {
 
   }
 
-resource "aws_ebs_volume" "root_volume" {
+  resource "aws_ebs_volume" "root_volume" {
   availability_zone = var.availability_zone
   size              = 10
 
@@ -25,17 +25,17 @@ resource "aws_ebs_volume" "root_volume" {
   }
 }
 
-resource "aws_volume_attachment" "ebs_att" {
+  resource "aws_volume_attachment" "ebs_att" {
   device_name = "/dev/sdh"
   volume_id   = aws_ebs_volume.root_volume.id
-  instance_id = aws_instance.UbuntuServer[count.index].id
+  instance_id = aws_instance.UbuntuServer[0].id
 }
 
-resource "aws_network_interface" "UbuntuServerNetworkInterface" {
+  resource "aws_network_interface" "UbuntuServerNetworkInterface" {
   subnet_id = var.subnet_id
 }
 
-resource "aws_security_group" "StagingUbuntuServer" {
+  resource "aws_security_group" "StagingUbuntuServer" {
   name_prefix = "For staging env"
   description = "Hillel Modules"
   tags = local.common_tags
