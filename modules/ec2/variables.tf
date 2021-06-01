@@ -48,6 +48,16 @@ variable "subnet_id" {
   type        = string
 }
 
+variable "vpc_id" {
+  description = "ID VPC"
+  type        = string
+}
+
+variable "volume_size" {
+  description = "attached volume"
+  type        = string
+  default     = "10"
+}
 //variable "subnet_ids" {
 //  description = "A list of VPC Subnet IDs to launch in"
 //  type        = list(string)

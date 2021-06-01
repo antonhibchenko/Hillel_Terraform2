@@ -11,14 +11,15 @@
     ami = var.ami_id
     instance_type = var.instance_type
     key_name = var.key_name
-//    vpc_security_group_ids = [aws_instance.UbuntuServer.id]
+    subnet_id = var.subnet_id
+    security_groups = [aws_security_group.StagingUbuntuServer.id]
     tags = local.common_tags
 
   }
 
   resource "aws_ebs_volume" "root_volume" {
   availability_zone = var.availability_zone
-  size              = 10
+  size              = var.volume_size
 
   tags = {
     Name = "LinuxRootVolume"
@@ -38,6 +39,7 @@
   resource "aws_security_group" "StagingUbuntuServer" {
   name_prefix = "For staging env"
   description = "Hillel Modules"
+  vpc_id = var.vpc_id
   tags = local.common_tags
   egress { // allow outgoing traffic to anywhere
     from_port   = 0
