@@ -21,9 +21,3 @@ variable "volume_size" {
   type        = string
   default     = "10"
 }
-
-variable "key_name" {
-  description = "The key name to use for the instance"
-  type        = string
-  default     = ""
-}

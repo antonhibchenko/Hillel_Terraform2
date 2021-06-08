@@ -37,10 +37,10 @@ variable "instance_type" {
   type        = string
 }
 
-variable "key_name" {
+variable "aws_key_pair" {
   description = "The key name to use for the instance"
   type        = string
-  default     = ""
+  default     = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYwIkmnFu5vhn7+a5658FdCp5NmNRa2yVZcJ+N6h5TpsoGqNzvaETwvzVvzVSPkgeO3jPhT/fBHselBbD6c60S6/AtL2/r4gYZVil9N+GWVAzcxtkHE6fi8fok9PlvqAZKz0icVs+D8DR+oQiL/aHMMt1pcyYOKnljE4RMYk6hae0gHpiFvxmf/RngFk/KjJSBNwJJtvGspfHnjICEkzHiJPvbJjfYO+rYiHx4DOCw4S5Dbssvq5vNW+WodxoEN/FOLtDhxpCbdfQWfgnHnMoSk5lslelrhvHZyP+2D35NbwlO31+mPLCt/FNnelEBjZw8jw8EfPgVNJbLpnflrFxt UbuntuTest"
 }
 
 variable "subnet_id" {

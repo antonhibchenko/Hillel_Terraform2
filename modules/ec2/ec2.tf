@@ -10,11 +10,16 @@
     count = var.instance_count
     ami = var.ami_id
     instance_type = var.instance_type
-    key_name = var.key_name
     subnet_id = var.subnet_id
     security_groups = [aws_security_group.StagingUbuntuServer.id]
     tags = local.common_tags
+    key_name = aws_key_pair.deployer.key_name
 
+  }
+
+  resource "aws_key_pair" "deployer" {
+    key_name   = "deployer-key"
+    public_key = var.aws_key_pair
   }
 
   resource "aws_ebs_volume" "root_volume" {

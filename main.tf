@@ -24,10 +24,4 @@ module "ec2" {
   subnet_id = module.vpc.public_networks[1]
   eip_attach = var.eip_attach
   volume_size = var.volume_size
-  key_name = aws_key_pair.UbuntuTest.id
-}
-
-resource "aws_key_pair" "UbuntuTest" {
-  key_name   = "deployer-key"
-  public_key = var.key_name
 }
