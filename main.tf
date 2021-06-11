@@ -24,4 +24,5 @@ module "ec2" {
   subnet_id = module.vpc.public_networks[1]
   eip_attach = var.eip_attach
   volume_size = var.volume_size
+  aws_key_pair = var.aws_key_pair
 }
