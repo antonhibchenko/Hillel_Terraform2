@@ -1,9 +1,3 @@
-variable "name" {
-  description = "Linux Web Server"
-  default = "Linux_Web_Server"
-  type        = string
-}
-
 variable "instance_type" {
   description = "t3.micro"
   default     = "t3.micro"
@@ -25,5 +19,4 @@ variable "volume_size" {
 variable "aws_key_pair" {
   description = "The key name to use for the instance"
   type        = string
-  default     = ""
 }

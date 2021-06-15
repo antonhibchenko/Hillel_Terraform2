@@ -23,18 +23,20 @@
   }
 
   resource "aws_ebs_volume" "root_volume" {
+  count = var.instance_count
   availability_zone = var.availability_zone
   size              = var.volume_size
 
   tags = {
-    Name = "LinuxRootVolume"
+    Name = "LinuxRootVolume${count.index}"
   }
 }
 
   resource "aws_volume_attachment" "ebs_att" {
+  count = var.instance_count
   device_name = "/dev/sdh"
-  volume_id   = aws_ebs_volume.root_volume.id
-  instance_id = aws_instance.UbuntuServer[0].id
+  volume_id   = aws_ebs_volume.root_volume[count.index].id
+  instance_id = aws_instance.UbuntuServer[count.index].id
 }
 
   resource "aws_network_interface" "UbuntuServerNetworkInterface" {

@@ -20,7 +20,6 @@ module "ec2" {
   source = "./modules/ec2"
   vpc_id = module.vpc.vpc_id
   instance_type = var.instance_type
-  name = var.name
   subnet_id = module.vpc.public_networks[1]
   eip_attach = var.eip_attach
   volume_size = var.volume_size
